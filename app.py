@@ -14,8 +14,8 @@ if st.button("■■ Start Listening"):
  mood, feedback = analyze_emotion(text)
  st.success(feedback)
  log_mood(mood)
-  else:
-   st.warning("Could not detect any speech. Try again.")
+ else:
+  st.warning("Could not detect any speech. Try again.")
 if st.button("■ Show Mood Log"):
  moods = load_mood_log()
  if moods:
