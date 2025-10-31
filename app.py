@@ -9,16 +9,19 @@ st.title("🎙️ EchoAid")
 st.subheader("Real-Time Emotion-Aware Speech Companion")
 st.markdown("Speak to EchoAid — it listens and gently reflects your tone back to you.")
 
-if st.button("▶️ Start Listening"):
-    st.info("Listening... please speak clearly.")
-    text = capture_voice()
-    if text:
-        st.markdown(f"**You said:** {text}")
-        mood, feedback = analyze_emotion(text)
-        st.success(feedback)
-        log_mood(mood)
-    else:
-        st.warning("Could not detect any speech. Try again.")
+# Audio input
+audio_bytes = st.audio_input("🎤 Record your voice")
+
+if audio_bytes:
+    with st.spinner("Processing your speech..."):
+        text = capture_voice(audio_bytes)
+        if text:
+            st.markdown(f"**You said:** {text}")
+            mood, feedback = analyze_emotion(text)
+            st.success(feedback)
+            log_mood(mood)
+        else:
+            st.warning("Could not detect any speech. Try again.")
 
 if st.button("📊 Show Mood Log"):
     moods = load_mood_log()
