@@ -10,7 +10,7 @@ if st.button("■■ Start Listening"):
  st.info("Listening... please speak clearly.")
  text = capture_voice()
  if text:
- st.markdown(f"**You said:** {text}")
+  st.markdown(f"**You said:** {text}")
  mood, feedback = analyze_emotion(text)
  st.success(feedback)
  log_mood(mood)
